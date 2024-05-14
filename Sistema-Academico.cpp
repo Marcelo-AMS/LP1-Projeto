@@ -169,7 +169,6 @@ void menuInicial(bool &iniciarSistema, Dados x)
 
 
 int main(){
-
     bool iniciarSistema;
     Dados x;
 
