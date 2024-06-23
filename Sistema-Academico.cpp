@@ -390,10 +390,10 @@ void menuInicial(bool &iniciarSistema){
 
 int main(){
     setlocale(LC_ALL, "portuguese");
-    //bool iniciarSistema;
+    bool iniciarSistema;
 
 
-    //menuInicial(iniciarSistema,x);
+    menuInicial(iniciarSistema);
 
   return 0;
 }
