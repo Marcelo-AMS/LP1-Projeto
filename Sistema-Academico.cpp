@@ -44,54 +44,52 @@ struct Turma{
     float media;
 
 };
-// struct Dados{
-//     Aluno p;
-//     Disciplinas disciplinas[2];
-// };
+
 Turma *armazemT[100];
 Aluno *armazem[100];
 
 void cadastroDisciplina(Grade disciplinas){
-        setlocale(LC_ALL, "portuguese");
-  // 
-        cout << "Insira o componente curricular: " << endl;
-        cin >> disciplinas.componenteCurricular;
-        cout << "Insira o Professor do componente curricular: " << endl;
-        cin >> disciplinas.professor;
-        cout << "Insira o total de horas de " << disciplinas.componenteCurricular <<": " << endl;
-        cin >> disciplinas.horaAula; 
-        cout << "Insira os horário das aulas de " << disciplinas.componenteCurricular << ": " << endl;
-        cin >> disciplinas.horario;
-    }
+    setlocale(LC_ALL, "portuguese");
+    cout << "Insira o componente curricular: " << endl;
+    getline(cin, disciplinas.componenteCurricular);
+    cout << "Insira o Professor do componente curricular: " << endl;
+    getline(cin, disciplinas.professor);
+    cout << "Insira o total de horas de " << disciplinas.componenteCurricular <<": " << endl;
+    cin >> disciplinas.horaAula; 
+    cout << "Insira os horários das aulas de " << disciplinas.componenteCurricular << ": " << endl;
+    getline(cin, disciplinas.horario);
+}
 
-Aluno* cadastroAluno(Aluno *dado){
-        setlocale(LC_ALL, "portuguese");
-
-        cout << "=============================================================================" << endl;
-        cout << "Insira o nome do aluno a ser cadastrado: " << endl;
-        cin >> dado->nome;
-        cout << "Insira o número do CPF do aluno " << dado->nome << ": " << endl;
-        cin >> dado->cpf;
-        cout << "Insira a data de nascimento do aluno " << dado->nome << ": " << endl;
-        cin >> dado->dataNascimento;
-        cout << " " <<endl;
-        cout << "Insira o curso do aluno " << dado->nome << ": "<<  endl;
-        cin >> dado->curso;
-        cout << " " <<endl;
-        cout << "Insira o turno do curso: " << endl;
-        cin >> dado->turno;
-        cout << " " <<endl;
-        cout << "Insira a data de ingresso do aluno " << dado->nome << ": " << endl;
-        cin >> dado->ingresso;
-        cout << " " <<endl;
-        cout << "Insira o número da matricula do aluno " << dado->nome << ": " << endl;
-        cin >> dado->matricula;
-        cout << " " <<endl;
-        cout << "Insira o período do aluno " << dado->nome << ": " << endl;
-        cin >> dado->periodo;
-        cout << "=============================================================================" <<endl;
-        cout << " " <<endl;
-        return dado;
+void cadastroAluno(){
+    setlocale(LC_ALL, "portuguese");
+    string palavra = "sim;";
+    int cont = 0 ;
+    while(palavra == "sim"){
+    cout << "=============================================================================" << endl;
+    cout << "Insira o nome do aluno a ser cadastrado: " << endl;
+    getline(cin, armazem[cont]->nome);
+    cout << "Insira o número do CPF do aluno " << armazem[cont]->nome << ": " << endl;
+    cin >> armazem[cont]->cpf;
+    cout << "Insira a data de nascimento do aluno " << armazem[cont]->nome << ": " << endl;
+    getline(cin, armazem[cont]->dataNascimento);
+    cout << " " <<endl;
+    cout << "Insira o curso do aluno " << armazem[cont]->nome << ": "<<  endl;
+    getline(cin, armazem[cont]->curso);
+    cout << " " <<endl;
+    cout << "Insira o turno do curso: " << endl;
+    getline(cin, armazem[cont]->turno);
+    cout << " " <<endl;
+    cout << "Insira a data de ingresso do aluno " << armazem[cont]->nome << ": " << endl;
+    getline(cin, armazem[cont]->ingresso);
+    cout << " " <<endl;
+    cout << "Insira o número da matricula do aluno " << armazem[cont]->nome << ": " << endl;
+    cin >> armazem[cont]->matricula;
+    cout << " " <<endl;
+    cout << "Insira o numero do período do aluno " << armazem[cont]->nome << ": " << endl;
+    cin >> armazem[cont]->periodo;
+    cout << "=============================================================================" <<endl;
+    cout << " " <<endl;
+        }
 
 }
 void calcularnotas(){
@@ -127,18 +125,16 @@ void calcularnotas(){
     }
 }
 void armazenar(){
+    setlocale(LC_ALL, "portuguese");
 
-    int cont = 0;
     string palavra;
-    Aluno *dado;
     cout << "Deseja cadastrar aluno? " << endl;
     cin >> palavra;
     while(palavra == "sim"){
         cout << "=================================" << endl;
         cout << "         Cadastro Aluno" << endl;
         cout << "=================================" << endl;
-        armazem[cont] = cadastroAluno(*&dado);
-        cont++;
+        cadastroAluno();
         cout << "=================================" << endl;
         cout << "        Aluno cadastrado" << endl;
         cout << "=================================" << endl;
@@ -150,7 +146,6 @@ void armazenar(){
 void cadastroTurma(){
     setlocale(LC_ALL, "portuguese");
     string confirmacao = "sim";
-    int aux1 = 0;
     int aux3 = 0;
     while(confirmacao == "sim"){
         
@@ -208,13 +203,12 @@ void cadastroTurma(){
     } 
 }   
 
-
 void mediaTurma(){
+    setlocale(LC_ALL, "portuguese");
     int num;
     cout << "Digite o ID da turma: " << endl;
     cin >> num;
     int soma = 0;
-
     for(int i = 0; i < 100; i++){
         if(num == armazemT[i]->ID){
             cout << "================================" << endl;
@@ -224,14 +218,12 @@ void mediaTurma(){
                 soma += armazemT[i]->alunos[j]->disciplinas->notas.media;
                 armazemT[i]->media = soma / armazemT[i]->totalAlunos;    
             }
-        }   cout << "Media da turma: " << armazemT[i]->media << endl;
+            cout << "Media da turma: " << armazemT[i]->media << endl;
+        }   
     }
-
-
 }
 
-void pause()
-{
+void pause(){
     cout << '\n'
          << "Pressione Enter:";
     char a;
@@ -240,9 +232,10 @@ void pause()
 }
 
 void exibirTurma(){
+    setlocale(LC_ALL, "portuguese");
     int idDisciplina;
 
-    cout << "Qual o ID da disciplina que deseja exibir a turma: " << "/n";
+    cout << "Qual o ID da disciplina que deseja exibir a turma: " << "\n";
     cin >> idDisciplina;
 
     for(int i = 0; i < 100; ++i){
@@ -257,18 +250,20 @@ void exibirTurma(){
             cout << "Horário: " << armazemT[i]->disciplina.horario << endl;
             cout << "Total de Alunos na turma: "<< armazemT[i]->totalAlunos << endl;
             for(int i = 0; i < armazemT[i]->totalAlunos; i++){
-                cout << "Aluno " << i + 1 << ":" << armazemT[i]->alunos[i]->nome << "/n" << "Matrícula: " << armazemT[i]->alunos[i]-> matricula << endl;
+                cout << "Aluno " << i + 1 << ":" << armazemT[i]->alunos[i]->nome << "\n" << "Matrícula: " << armazemT[i]->alunos[i]-> matricula << endl;
                 cout << "-------------------------------------------------" << endl;
             }
 
             return;
             
         }
-        cout << "Essa turma não foi encontrada. Verifique se o ID foi digitado corretamente e tente novamente" << endl;
+        cout << "Essa turma não foi encontrada. Verifique se o ID foi digitado corretamente e tente novamente!" << endl;
     }
+    mediaTurma();
 }
 
 void exibirNotaAluno(){
+    setlocale(LC_ALL, "portuguese");
     int matriculaAluno, idDisciplina;
 
     cout << "Digite a matrícula do aluno que deseja visualizar as notas: " << endl;
@@ -281,7 +276,7 @@ void exibirNotaAluno(){
             for(int j = 0; j < armazemT[i]->totalAlunos; ++j){
                 if(armazemT[i]->alunos[j]->matricula == matriculaAluno){
                     cout << "================================" << endl;
-                    cout << "    Notas do Aluno - Matrícula: " << matriculaAluno << endl;
+                    cout << " Notas do Aluno - Matrícula: " << matriculaAluno << endl;
                     cout << "================================" << endl;
                     cout << "Aluno: " << armazemT[i]-> alunos[j] -> nome << endl;
                     cout << "Nota 1: " << armazemT[i]->alunos[j]->disciplinas[0].notas.nota1 << endl;
@@ -290,109 +285,108 @@ void exibirNotaAluno(){
                     return;
                 }
             }    
-            cout << "Aluno com matricula: " << matriculaAluno << "não encontrada na disciplina de ID: " << idDisciplina << "." << "/n" << "Confira se a matricula esta escrita corretamente e tente novamente."<< endl;
+            cout << "Aluno com matricula: " << matriculaAluno << "não encontrada na disciplina de ID: " << idDisciplina << "." << "\n" << "Confira se a matricula esta escrita corretamente e tente novamente."<< endl;
             return; 
         }
-        cout << "A Disciplina com o ID: " << idDisciplina << "não foi encontrada." << "/n" << "Confira se o ID foi escrito de forma corretamente e tente novamente" << endl;
+        cout << "A Disciplina com o ID: " << idDisciplina << "não foi encontrada." << "\n" << "Confira se o ID foi escrito de forma corretamente e tente novamente" << endl;
     }
-    
+}
 
-
+void exibirDados(){
+    setlocale(LC_ALL, "portuguese");
+    int aux1;
+    cout << "Digite a matricula do aluno que deseja vizualiar: " << endl;
+    cin >> aux1;
+    for(int i = 0; i < 100; i++){
+        if(aux1 == armazem[i]->matricula){
+            cout << "=============================================================================" << endl;
+            cout << "Dados do aluno (" << armazem[i]->matricula << ")" << endl;
+            cout << " " << endl;
+            cout << "Nome: " << armazem[i]->nome << endl;
+            cout << "Matricula: (" << armazem[i]->matricula << ")" << endl;
+            cout << "CPF: " << armazem[i]->cpf << endl;
+            cout << "Data de nascimento: " <<armazem[i]->dataNascimento << endl;
+            cout << "Curso: " << armazem[i]->curso << endl;
+            cout << "Turno: " << armazem[i]->turno << endl;
+            cout << "Data de ingresso: " << armazem[i]->ingresso << endl;
+            cout << "Periodo atual: " << armazem[i]->periodo << "ª" << endl;
+            cout << "=============================================================================" << endl; 
+            cout << " " <<endl;
+        }
+    }     
 }
 
 
 
-// void exibirDados(Dados *&dados){
-//     Dados *novosDados = dados;
-//     if(novosDados != nullptr){
-//         while(novosDados != nullptr){
-//             cout << "=============================================================================" << endl;
-//             cout << "Dados do aluno (" << novosDados->p.matricula << ")" << endl;
-//             cout << " " << endl;
-//             cout << "Nome: " << novosDados->p.nome << endl;
-//             cout << "Matricula: (" << novosDados->p.matricula << ")" << endl;
-//             cout << "CPF: " << novosDados->p.cpf << endl;
-//             cout << "Data de nascimento: " <<novosDados->p.dataNascimento << endl;
-//             cout << "Curso: " << novosDados->p.curso << endl;
-//             cout << "Turno: " << novosDados->p.turno << endl;
-//             cout << "Data de ingresso: " << novosDados->p.ingresso << endl;
-//             cout << "Periodo atual: " << novosDados->p.periodo << "ª" << endl;
-//             cout << "=============================================================================" << endl; 
-//             cout << " " <<endl;
-//             exibirDisciplina(novosDados->disciplinas);
-//             novosDados = novosDados->proximo;
-//         }
-//     }else{
-//         cout << "Nenhum dado cadastrado" << endl; 
-//     }
-// }
-
-// void cadastroDados(Dados *&dado){
-//     if(dado == nullptr){
-//         CadastroAluno(dado);
-//         dado->proximo = nullptr;
-//     }else{
-//         Dados *aux = dado;
-//        // Dados *aux2;
-//         while(aux->proximo != nullptr){
-//             aux = aux->proximo;
-//         }
-//         CadastroAluno(dado);
-//         dado->proximo = nullptr;
-//     }
-// }
-
-
-void menuInicial(bool &iniciarSistema, Dados *&x)
-{
+void menuInicial(bool &iniciarSistema){
     setlocale(LC_ALL, "portuguese");
     
     char escolha;
     do
-    {
+     {
 
         cout << "Selecione uma das opções para prosseguir:" << '\n'
-             << "** 1. Cadastrar Aluno" << '\n'
-             << "** 2. Exibir Alunos cadastrados" << '\n'
-             << "** 3. Desenvolvedores" << '\n'
-             << "** 4. Sair" << '\n'
-             << ">> ";
-             //mais coisas serão adicionadas no Menu ao decorrer do projeto
+            << "** 1. Cadastrar Aluno" << '\n'
+            << "** 2. Cadastrar Turma" << '\n'
+            << "** 3. Exibir dados do Aluno" << '\n'
+            << "** 4. Exibir notas do Aluno"
+            << "** 5. Exibir dados da turma" << '\n'
+            << "** 6. Desenvolvedores" << '\n'
+            << "** 7. Sair" << '\n'
+            << ">> ";
+
         cin >> escolha;
 
         switch (escolha)
         {
         case '1':
-            cadastroDados(*&x);
+            cadastroAluno();
             pause();
-            menuInicial(iniciarSistema, x);
+            menuInicial(iniciarSistema);
             
             break;
         case '2':
-            exibirDados(*&x);
+            cadastroTurma();
             pause();
-            menuInicial(iniciarSistema,x);
+            menuInicial(iniciarSistema);
             
             break;
         case '3':
+            exibirDados();
+            pause();
+            menuInicial(iniciarSistema);
+
+            break;
+        case '4':
+            exibirNotaAluno();
+            pause();
+            menuInicial(iniciarSistema);
+
+            break;            
+        case '5':
+            exibirTurma();
+            pause();
+            menuInicial(iniciarSistema);
+
+            break;
+        case '6':
             cout << "=========== DESENVOLVEDORES ===========" << '\n';
             cout << "- Kemelly Klaricy Rufino de Lima" << '\n';
             cout << "- Marcelo Alisson M. Silva" << '\n';
             cout << '\n';
             pause();
             break;
-        case '4':
+            
+        case '7':
             cout << "Saindo do programa..." << '\n';
             break;
         default:
             cout << "Opção inválida. Tente novamente." << '\n';
-            break;
+        break;
         }
 
-    } while (escolha != '4' && escolha != '1');
+    } while (escolha != '7' && escolha != '1');
 }
-
-
 
 int main(){
     setlocale(LC_ALL, "portuguese");
