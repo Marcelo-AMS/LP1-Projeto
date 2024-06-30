@@ -260,10 +260,31 @@ void exibirTurma(Turma turma[], int totalTurmas) {
     cout << "Turma com ID: " << idDisciplina << " não encontrada." << endl;
 }
 
+void exibirNotasAluno(Aluno aluno[], int &totalAlunos, int num){
+    for(int i = 0; i < totalAlunos; i++){
+        if(num == aluno[i].matricula){
+            for(int j = 0; j < 2; j++){
+                if(aluno[i].disciplinas->notas.media == 0){
+                    cout << "O aluno ainda nao tem notas atribuidas" << endl;
+                }else{
+                    cout << "---------------------------------" << endl;
+                    cout << "Notas da disciplina " << aluno[i].disciplinas->disciplina.componenteCurricular << ": " << endl;
+                    cout << "Primeira Nota: " << aluno[i].disciplinas->notas.nota1 << endl;
+                    cout << "Segunda Nota: " << aluno[i].disciplinas->notas.nota2 << endl;
+                    cout << "Media: " << aluno[i].disciplinas->notas.media << endl;
+                    cout << "---------------------------------" << endl;
+                }
+            }
+        }
+    }
+
+}
+
 void exibirAluno(Aluno aluno[], int &totalAlunos){
     int matricu;
     cout << "Digite a matricula do aluno a ser exibido: " << endl;
     cin >> matricu;
+    string palavra;
     for(int i = 0; i < totalAlunos; i++){
         if(matricu == aluno[i].matricula){
             cout << "--------------------------------" << endl;
@@ -275,6 +296,11 @@ void exibirAluno(Aluno aluno[], int &totalAlunos){
             cout << "Matricula: " << aluno[i].matricula << endl;
             cout << "Periodo: " << aluno[i].periodo << endl;    
             cout << "--------------------------------" << endl;
+            cout << "Deseja vizualizar as notas do aluno? " << endl;
+            cin >> palavra;
+            if(palavra == "sim"){
+                exibirNotasAluno(aluno, totalAlunos, matricu);
+            }
             return;
         }
     }
