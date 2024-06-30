@@ -1,5 +1,5 @@
 #include <iostream>
-#include <locale.h>
+#include <locale>
 #include <string>
 #include <vector>
 #define MAX 100
@@ -252,11 +252,33 @@ void exibirTurma(Turma turma[], int totalTurmas) {
                 cout << "Periodo: " << turma[i].alunos[j].periodo << endl;
                 cout << "Notas: " << turma[i].alunos[j].disciplinas[0].notas.nota1 << ", " << turma[i].alunos[j].disciplinas[0].notas.nota2 << endl;
                 cout << "Media: " << turma[i].alunos[j].disciplinas[0].notas.media << endl;
+                cout << "--------------------------------" << endl;
             }
             return;
         }
     }
     cout << "Turma com ID: " << idDisciplina << " não encontrada." << endl;
+}
+
+void exibirAluno(Aluno aluno[], int &totalAlunos){
+    int matricu;
+    cout << "Digite a matricula do aluno a ser exibido: " << endl;
+    cin >> matricu;
+    for(int i = 0; i < totalAlunos; i++){
+        if(matricu == aluno[i].matricula){
+            cout << "--------------------------------" << endl;
+            cout << "Nome: " << aluno[i].nome << endl;
+            cout << "CPF: " << aluno[i].cpf << endl;
+            cout << "Data de Nascimento: " << aluno[i].dataNascimento << endl;
+            cout << "Curso: " << aluno[i].curso << endl;
+            cout << "Turno: " << aluno[i].turno << endl;
+            cout << "Matricula: " << aluno[i].matricula << endl;
+            cout << "Periodo: " << aluno[i].periodo << endl;    
+            cout << "--------------------------------" << endl;
+            return;
+        }
+    }
+    cout << "Aluno nao encontrado verifique se digitou a matricula corretamente" << endl;
 }
 
 int main() {
@@ -275,8 +297,9 @@ int main() {
         cout << "1. Cadastrar Aluno" << endl;
         cout << "2. Cadastrar Turma" << endl;
         cout << "3. Atribuir Notas" << endl;
-        cout << "4. Calcular Média da Turma" << endl;
+        cout << "4. Calcular Media da Turma" << endl;
         cout << "5. Exibir Turma" << endl;
+        cout << "6. Exibir Aluno" <<endl;
         cout << "0. Sair" << endl;
         cout << "Escolha uma opcao: ";
         cin >> escolha;
@@ -297,7 +320,11 @@ int main() {
             case 5:
                 exibirTurma(turma, totalTurmas);
                 break;
+            case 6:
+                exibirAluno(aluno, totalAlunos);
+                break;
             case 0:
+                cout << "Saindo..." <<endl;
                 return 0;
             default:
                 cout << "Opção inválida. Tente novamente." << endl;
