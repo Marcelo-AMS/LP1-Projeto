@@ -122,9 +122,10 @@ void calcularnotas(Aluno aluno[], int totalAlunos) {
         }
         cout << "Deseja atribuir outras notas? sim ou nao: ";
         cin >> palavra;
-        system("cls"); // Limpar a tela
+        system("cls"); 
     }
 }
+
 
 void armazenar(Aluno aluno[], int& totalAlunos) {
     setlocale(LC_ALL, "portuguese");
@@ -190,11 +191,13 @@ void cadastroTurma(Turma turma[], Aluno aluno[], int totalAlunos, int& totalTurm
                 cout << "Aluno nao encontrado, verifique se digitou corretamente " << endl;
             }
             turma[totalTurmas].totalAlunos++;
+            system("cls");
             cout << "Deseja matricular aluno? sim ou nao: ";
             cin >> palavra;
             system("cls");
         }
         totalTurmas++;
+        system("cls");
         cout << "Deseja cadastrar outra disciplina? sim ou nao: ";
         cin >> confirmacao;
         system("cls");
@@ -270,7 +273,7 @@ void exibirNotasAluno(Aluno aluno[], int &totalAlunos, int num){
         if(num == aluno[i].matricula){
             for(int j = 0; j < 2; j++){
                 if(aluno[i].disciplinas->notas.media == 0){
-                    cout << "O aluno com matricula (" << num <<  ") ainda nao tem notas atribuidas" << endl;
+                    cout << "O aluno ainda nao tem notas atribuidas" << endl;
                 }else{
                     cout << "---------------------------------" << endl;
                     cout << "Notas da disciplina " << aluno[i].disciplinas->disciplina.componenteCurricular << ": " << endl;
@@ -309,7 +312,7 @@ void exibirAluno(Aluno aluno[], int &totalAlunos){
             return;
         }
     }
-    cout << "Aluno com matricula (" << matricu << ") nao encontrado verifique se digitou a matricula corretamente" << endl;
+    cout << "Aluno nao encontrado verifique se digitou a matricula corretamente" << endl;
 }
 
 int main() {
